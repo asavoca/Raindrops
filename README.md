@@ -1,0 +1,1 @@
+This game gon' make you lose yo mind.  When I'm done it's gon' have Doors music and stuff.  And the 34th single from my album comin out next fall. You gon' see some raindrops and guess what you gon' do to em.  You gon' catch 'em like the raindrops they is.  Church?  Aight, Imma preach da rest.  So if you don't catch 'em you lose.  You deada then a dead cat.  Aight?
