@@ -1,6 +1,8 @@
 int index = 0;
 int score = 0;
 int rcount = 3000;
+int oldTime = 0;
+int currentTime;
 Raindrop[] r = new Raindrop[rcount];
 Catcher player;
 void setup() {
@@ -11,22 +13,17 @@ void setup() {
   }
 }
 void draw() {
-  background(60);
+  currentTime = millis();
+  background(0,100);
   player.display();
+  player.move();
+  text(score,width - 200, 50);
   for (int i = 0; i < index; i++) {
     r[i].Raindrop();
     player.catchDrops(r[i]);
   }
-}
-void mousePressed() {
-  index++;
-}
-
-void keyPressed() {
-  if (keyCode == LEFT) {
-    player.loc.x-= 10;
-  }
-  if (keyCode == RIGHT) {
-    player.loc.x+= 10;
+  if(currentTime - oldTime >= 2000) {
+    index++;
+    oldTime = currentTime;
   }
 }
