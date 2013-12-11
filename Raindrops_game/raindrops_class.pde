@@ -1,6 +1,7 @@
 class Raindrop {
   int d;
   PVector loc;
+  boolean loser = false;
   PVector vel;
   PVector grav;
   Raindrop() {
@@ -12,7 +13,11 @@ class Raindrop {
   void Raindrop() {
     fill(150, 150, 255);
     ellipse(loc.x, loc.y, d, d);
-    loc.add(vel);
-    vel.add(grav);
+    loc.add(vel);  //Raindrops fall
+    vel.add(grav); //and accelerate
+    if(loc.x >= 0 && loc.x <= width && loc.y >= height){
+      loser = true;  //if you lose then this tells the main script
+    }
   }
 }
+

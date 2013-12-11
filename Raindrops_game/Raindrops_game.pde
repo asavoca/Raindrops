@@ -1,29 +1,49 @@
+import ddf.minim.*;
+
 int index = 0;
+boolean loser = false;
 int score = 0;
 int rcount = 3000;
 int oldTime = 0;
+Minim minim;                    //Not really sure how this works
+AudioSnippet lost;              //but it does so....
 int currentTime;
 Raindrop[] r = new Raindrop[rcount];
 Catcher player;
 void setup() {
   size(600, 600);
-  player = new Catcher();
+  minim = new Minim(this);
+  lost = minim.loadSnippet("loser.mp3"); //loading the audio file
+  player = new Catcher();           //creates catcher known as player
   for (int i = 0; i < rcount; i++) {
-    r[i] = new Raindrop();
+    r[i] = new Raindrop();          //Creating the raindrops
   }
 }
 void draw() {
   currentTime = millis();
-  background(0,100);
+  background(0, 200);
   player.display();
   player.move();
-  text(score,width - 200, 50);
+  text(score, width - 200, 50);
   for (int i = 0; i < index; i++) {
-    r[i].Raindrop();
-    player.catchDrops(r[i]);
+    r[i].Raindrop();             //Makes raindrops fall
+    player.catchDrops(r[i]);     //and checks if they are caught
+    if (r[i].loser == true) {
+      loser = true;      //checks if raindrops are missed
+    }
   }
-  if(currentTime - oldTime >= 2000) {
+  if (currentTime - oldTime >= 2000) {  //checks if 2 seconds have passed since last drop
     index++;
-    oldTime = currentTime;
+    oldTime = currentTime;  //resets the timer
+  }
+  if (loser == true) {
+    background(0);       //if you lose
+    fill(255, 0, 0);     //you will know
+    textAlign(CENTER);
+    textSize(75);
+    lost.play();
+    text("LOSER", width/2, height/2);
+    noLoop();
   }
 }
+
