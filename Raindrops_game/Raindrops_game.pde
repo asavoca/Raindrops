@@ -10,16 +10,14 @@ int oldTime = 0;
 Minim minim;                    //Not really sure how this works
 AudioSnippet lost;              //but it does so....
 int currentTime;
-Raindrop[] r = new Raindrop[rcount];
+ArrayList<Raindrop> raindrops = new ArrayList<Raindrop>();
 Catcher player;
 void setup() {
   size(600, 600);
   minim = new Minim(this);
   lost = minim.loadSnippet("loser.mp3"); //loading the audio file
   player = new Catcher();           //creates catcher known as player
-  for (int i = 0; i < rcount; i++) {
-    r[i] = new Raindrop();          //Creating the raindrops
-  }
+  raindrops.add(new Raindrop());
 }
 void draw() {
   background(0, 200);
@@ -44,17 +42,18 @@ void draw() {
     player.display();
     player.move();
     text(score, width - 200, 50);
-    text(lives, 200,50);
-    text("Press r to restart", 200,80);
-    for (int i = 0; i < index; i++) {
-      r[i].Raindrop();             //Makes raindrops fall
-      player.catchDrops(r[i]);     //and checks if they are caught
-      if (r[i].loser == true) {
+    text(lives, 200, 50);
+    text("Press r to restart", 200, 80);
+    for (int i = 0; i < raindrops.size(); i++) {
+      Raindrop r = raindrops.get(i);
+      r.Raindrop();             //Makes raindrops fall
+      player.catchDrops(r);     //and checks if they are caught
+      if (r.loser == true) {
         loser = true;      //checks if raindrops are missed
       }
     }
     if (currentTime - oldTime >= 2000) {  //checks if 2 seconds have passed since last drop
-      index++;
+      raindrops.add(new Raindrop());
       oldTime = currentTime;  //resets the timer
     }
     if (loser == true) {
@@ -67,7 +66,7 @@ void draw() {
       noLoop();
     }
   }
-  if(lives == 0) {
+  if (lives == 0) {
     loser = true;
   }
 }
@@ -86,3 +85,4 @@ void keyPressed() {
     loop();
   }
 }
+

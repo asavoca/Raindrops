@@ -1,7 +1,7 @@
 class Catcher {
   PVector loc;
   PVector vel;
-  int d = 50;
+  int d = 25;
   Catcher() {
     loc = new PVector(width/2, height-100);
     vel = new PVector(0, 0);
