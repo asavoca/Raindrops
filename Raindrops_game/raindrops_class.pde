@@ -16,7 +16,10 @@ class Raindrop {
     loc.add(vel);  //Raindrops fall
     vel.add(grav); //and accelerate
     if(loc.x >= 0 && loc.x <= width && loc.y >= height){
-      loser = true;  //if you lose then this tells the main script
+      loc.y = -1000;
+      vel.y = 0;
+      grav.y = 0;
+      lives= lives - 1;
     }
   }
 }
