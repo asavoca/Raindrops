@@ -1,6 +1,8 @@
 import ddf.minim.*;
 
 int index = 0;
+int lives;
+int stage;
 boolean loser = false;
 int score = 0;
 int rcount = 3000;
@@ -21,7 +23,8 @@ void setup() {
 }
 void draw() {
   currentTime = millis();
-  background(0, 200);
+  fill(0,50);
+  rect(0,0,width,height);
   player.display();
   player.move();
   text(score, width - 200, 50);
